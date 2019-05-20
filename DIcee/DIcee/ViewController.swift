@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  DIcee
+//  Dicee
 //
 //  Created by Jan Ficko on 20/05/2019.
 //  Copyright © 2019 Jan Ficko. All rights reserved.

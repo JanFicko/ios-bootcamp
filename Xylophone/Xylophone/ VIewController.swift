@@ -9,10 +9,10 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController{
+class ViewController: UIViewController, AVAudioPlayerDelegate {
     
-    var xylophoneSound = Bundle.main.url(forResource: "note2", withExtension: "wav")
-    var audioPlayer: AVAudioPlayer?
+    var audioPlayer: AVAudioPlayer!
+    let notes: [String] = ["note1", "note2", "note3", "note4", "note5", "note6", "note7"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,20 +20,16 @@ class ViewController: UIViewController{
 
     @IBAction func notePressed(_ sender: UIButton) {
         
-        print(sender.tag)
-        switch (sender.tag) {
-            case 1:
-                break
-            case 2:
-                break
-            case 3:
-                break
-            case 4:
-                break
-            case 5:
-                break
-            case 6:
-                break
+        let soundUrl = Bundle.main.url(forResource: notes[sender.tag], withExtension: "wav")
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: soundUrl!)
+            guard let audioPlayer = audioPlayer else { return }
+            
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        } catch let error {
+            print(error)
         }
         
     }
